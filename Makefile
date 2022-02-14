@@ -6,10 +6,11 @@ DEPS=src\state_globals.h
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 linrpn: src/main.o src/parser.o
-	$(CC) -o linrpn src/main.o src/parser.o
+	$(CC) -o bin/linrpn src/main.o src/parser.o
 
 clean:
 	rm src/*.o
+	rm bin/linrpn
 
 run:
-	./linrpn
+	bin/linrpn
