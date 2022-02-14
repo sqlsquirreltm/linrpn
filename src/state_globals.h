@@ -38,6 +38,6 @@ struct core_state
 	int    operator_stack_size;
 };
 
-bool parse_expression(std::string expression, core_state &c_state);
+std::list<std::string> parse_expression(std::string expression, core_state &c_state);
 
 #endif

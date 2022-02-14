@@ -27,7 +27,9 @@ class Tokenizer {
         }
         ~Tokenizer() {}
 
+        bool validExpression();
         bool nextToken(int *cpos, std::string exp);
+        std::list<std::string> tokenizeString();
 };
 
 // Receives a list of a tokenized expression from the Tokenizer
@@ -70,9 +72,29 @@ class Evaluator {
 };
 
 
-bool parse_expression(std::string expression, core_state &c_state) {
+bool Tokenizer::validExpression() {
+    return false;
+}
+
+std::list<std::string> Tokenizer::tokenizeString() {
+    return std::list<std::string>();
+}
+
+std::list<std::string> parse_expression(std::string expression, core_state &c_state) {
     c_state.program_state = PROG_PARSING;
-	return false;
+
+    Tokenizer tokenizer(expression);
+
+    if(!tokenizer.validExpression()) {
+        return std::list<std::string>();
+    }
+
+    std::list<std::string> exp_tokenized = tokenizer.tokenizeString();
+    if(exp_tokenized.empty()) {
+        return std::list<std::string>();
+    }
+
+	return exp_tokenized;
 }
 
 
